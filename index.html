@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mandona Alfred Kalumbu — Technologist</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A0F1E;
+    --navy-mid: #111827;
+    --navy-card: #151D2E;
+    --blue: #2D6BFF;
+    --blue-light: #5B8FFF;
+    --gold: #F5A623;
+    --white: #F0F4FF;
+    --slate: #8B9BB4;
+    --slate-dim: #4A5568;
+    --border: rgba(45,107,255,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--slate); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -30%; left: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(45,107,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 2rem; height: 1px;
+    background: var(--blue);
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+  .hero h1 .name-line { display: block; }
+  .hero-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    color: var(--slate);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+  .typing-word {
+    color: var(--gold);
+    font-weight: 600;
+    border-right: 2px solid var(--gold);
+    padding-right: 3px;
+  }
+  .hero-desc {
+    max-width: 520px;
+    color: var(--slate);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-block;
+    border: 1px solid var(--border);
+    color: var(--slate);
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500; font-size: 0.9rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--white); }
+
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 4rem;
+    font-size: 0.75rem; color: var(--slate-dim);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .scroll-hint::after {
+    content: ''; display: block;
+    width: 1px; height: 3rem;
+    background: var(--slate-dim);
+    animation: scrollLine 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0%,100% { opacity: 0.3; transform: scaleY(0.5); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 1.5rem; height: 1px; background: var(--blue);
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--slate); line-height: 1.8; margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+  }
+  .about-text p strong { color: var(--white); font-weight: 500; }
+  .about-stats { display: flex; flex-direction: column; gap: 1.5rem; }
+  .stat-row {
+    display: flex; align-items: baseline; gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem; font-weight: 700;
+    color: var(--white); line-height: 1;
+  }
+  .stat-num span { color: var(--gold); }
+  .stat-label { color: var(--slate); font-size: 0.9rem; }
+
+  /* SKILLS */
+  .skills-section { background: var(--navy-mid); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--blue); transform: translateY(-4px); }
+  .skill-card-icon {
+    font-size: 1.5rem; margin-bottom: 1rem;
+  }
+  .skill-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    margin-bottom: 0.75rem; color: var(--white);
+    letter-spacing: 0.01em;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    background: rgba(45,107,255,0.1);
+    border: 1px solid rgba(45,107,255,0.25);
+    color: var(--blue-light);
+    font-size: 0.75rem; font-weight: 500;
+    padding: 0.2rem 0.65rem;
+    border-radius: 100px;
+  }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0.6rem; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 3rem; }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2rem; top: 0.5rem;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 3px rgba(45,107,255,0.2);
+    transform: translateX(-4px);
+  }
+  .timeline-date {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .timeline-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem; font-weight: 600;
+    margin-bottom: 0.25rem; color: var(--white);
+  }
+  .timeline-org { color: var(--blue-light); font-size: 0.875rem; margin-bottom: 0.75rem; }
+  .timeline-desc { color: var(--slate); font-size: 0.925rem; line-height: 1.7; }
+
+  /* PROJECTS */
+  .projects-section { background: var(--navy-mid); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .project-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem; color: var(--gold); font-weight: 700;
+    letter-spacing: 0.15em; margin-bottom: 1rem;
+  }
+  .project-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    margin-bottom: 0.75rem; color: var(--white);
+    letter-spacing: -0.01em;
+  }
+  .project-card p { color: var(--slate); font-size: 0.925rem; line-height: 1.7; flex: 1; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; }
+
+  /* CERTIFICATIONS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .cert-item {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .cert-item:hover { border-color: var(--blue); }
+  .cert-icon { font-size: 1.25rem; flex-shrink: 0; }
+  .cert-name { font-size: 0.85rem; font-weight: 500; color: var(--white); line-height: 1.4; }
+  .cert-org { font-size: 0.75rem; color: var(--slate); }
+
+  /* CONTACT */
+  .contact-section {
+    background: linear-gradient(135deg, var(--navy) 0%, #0D1630 100%);
+    text-align: center;
+    padding: 8rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute; bottom: -20%; right: -10%;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(45,107,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-section .section-label { justify-content: center; }
+  .contact-section .section-label::before { display: none; }
+  .contact-email {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: var(--blue-light);
+    text-decoration: none;
+    display: block; margin: 1.5rem 0 2.5rem;
+    transition: color 0.2s;
+  }
+  .contact-email:hover { color: var(--white); }
+  .contact-location {
+    color: var(--slate); font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  .contact-phone { color: var(--slate); font-size: 0.9rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--slate-dim); font-size: 0.8rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .scroll-hint { left: 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">M<span>.</span>Kalumbu</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-eyebrow">Based in Zambia · Open to opportunities</div>
+  <h1>
+    <span class="name-line">Mandona Alfred</span>
+    <span class="name-line">Kalumbu</span>
+  </h1>
+  <div class="hero-subtitle">
+    Building with <span class="typing-word" id="typingWord">AI</span>
+  </div>
+  <p class="hero-desc">
+    A technologist combining software development with strategic insights into AI and blockchain — creating solutions that are innovative, automated, and inherently secure.
+  </p>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn-primary">View My Work</a>
+    <a href="#contact" class="btn-ghost">Get in Touch</a>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-title">Technologist.<br>Thinker. Builder.</div>
+      <p>I'm a <strong>BSc Computer Science student at Mulungushi University</strong>, driven by a passion for emerging technologies that solve real problems. My work sits at the intersection of software engineering, artificial intelligence, and decentralized systems.</p>
+      <p>From building blockchain-based supply chains to training deep learning models, I approach each challenge with both analytical rigor and creative thinking. I thrive in environments that demand adaptability — whether in the field or behind a terminal.</p>
+      <p>Currently exploring how <strong>AI and blockchain</strong> can reshape trust and automation in emerging markets across Africa.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-row">
+        <div class="stat-num">4<span>+</span></div>
+        <div class="stat-label">Programming languages mastered</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">5<span>+</span></div>
+        <div class="stat-label">Certifications & badges earned</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">Top<span> 10%</span></div>
+        <div class="stat-label">AI & Deep Learning certification score</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">16<span>wk</span></div>
+        <div class="stat-label">Intensive software development program</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-label">What I Work With</div>
+  <div class="section-title">Technical Skills</div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-icon">🧠</div>
+      <h3>AI & Machine Learning</h3>
+      <div class="skill-tags">
+        <span class="tag">TensorFlow</span>
+        <span class="tag">Keras</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">Neural Networks</span>
+        <span class="tag">Image Classification</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">💻</div>
+      <h3>Programming & Scripting</h3>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">C++</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Dart</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🌐</div>
+      <h3>Web Technologies</h3>
+      <div class="skill-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Flutter</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🗄️</div>
+      <h3>Databases</h3>
+      <div class="skill-tags">
+        <span class="tag">SQL</span>
+        <span class="tag">MySQL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">⚙️</div>
+      <h3>Hardware & Embedded</h3>
+      <div class="skill-tags">
+        <span class="tag">SoC</span>
+        <span class="tag">FPGA</span>
+        <span class="tag">Digital Circuit Design</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">📊</div>
+      <h3>Industrial Tools</h3>
+      <div class="skill-tags">
+        <span class="tag">Power BI</span>
+        <span class="tag">ThingWorx</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Where I've Been</div>
+  <div class="section-title">Experience &<br>Education</div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">2021 – Present</div>
+      <div class="timeline-title">BSc Computer Science</div>
+      <div class="timeline-org">Mulungushi University</div>
+      <div class="timeline-desc">Pursuing a degree in Computer Science with focus on software engineering, AI, and systems design.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">June 2025</div>
+      <div class="timeline-title">AI Applications — Huawei Talents Certificate</div>
+      <div class="timeline-org">Huawei</div>
+      <div class="timeline-desc">Completed study and examination on artificial intelligence applications. Collected and verified data using digital tools in field environments under strict deadlines.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">May 2025</div>
+      <div class="timeline-title">Introduction to Deep Learning</div>
+      <div class="timeline-org">Kaggle</div>
+      <div class="timeline-desc">Completed foundational course on neural networks and model training. Gained hands-on experience with TensorFlow/Keras for image classification and prediction tasks. Scored in the top 10% of participants.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">December 2023</div>
+      <div class="timeline-title">Software Development Program</div>
+      <div class="timeline-org">Power Learn Project</div>
+      <div class="timeline-desc">Completed a 16-week intensive training covering Python, Web Technologies, Database Management, and Dart with Flutter. Developed technical and soft skills for real-world software development.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">August 2021</div>
+      <div class="timeline-title">Polling Assistant</div>
+      <div class="timeline-org">Electoral Commission of Zambia</div>
+      <div class="timeline-desc">Served in the 2021 general election, counting votes and assisting voters under strict operational deadlines. Developed discipline and accuracy in high-stakes environments.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-label">What I've Built</div>
+  <div class="section-title">Projects</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">PROJECT 01</div>
+      <h3>Blockchain Agriculture Supply Chain</h3>
+      <p>A decentralized system leveraging blockchain technology to bring transparency, traceability, and trust to agricultural supply chains — tackling food fraud and inefficiencies in emerging markets.</p>
+      <div class="project-tech">
+        <span class="tag">Blockchain</span>
+        <span class="tag">Smart Contracts</span>
+        <span class="tag">Supply Chain</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">PROJECT 02</div>
+      <h3>Deep Learning Image Classifier</h3>
+      <p>Built and optimized a convolutional neural network using TensorFlow/Keras for real-world image classification tasks, applying concepts learned through Kaggle's foundational deep learning curriculum.</p>
+      <div class="project-tech">
+        <span class="tag">Python</span>
+        <span class="tag">TensorFlow</span>
+        <span class="tag">Keras</span>
+        <span class="tag">CNN</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Recognition</div>
+  <div class="section-title">Certifications & Badges</div>
+  <div class="certs-grid">
+    <div class="cert-item">
+      <div class="cert-icon">🤖</div>
+      <div>
+        <div class="cert-name">AI & Applications</div>
+        <div class="cert-org">Huawei Talents</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">🧬</div>
+      <div>
+        <div class="cert-name">Deep Learning</div>
+        <div class="cert-org">Kaggle · Top 10%</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">🐍</div>
+      <div>
+        <div class="cert-name">Python Programming</div>
+        <div class="cert-org">Certification</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">💾</div>
+      <div>
+        <div class="cert-name">Software Development</div>
+        <div class="cert-org">Power Learn Project</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">🏅</div>
+      <div>
+        <div class="cert-name">Python Coder Badge</div>
+        <div class="cert-org">Kaggle</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">🏅</div>
+      <div>
+        <div class="cert-name">Dataset Creator Badge</div>
+        <div class="cert-org">Kaggle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label">Let's Connect</div>
+  <div class="section-title">Get In Touch</div>
+  <p style="color: var(--slate); max-width: 480px; margin: 0 auto 1.5rem; font-size: 1.05rem; line-height: 1.7;">
+    Open to internships, collaborations, and opportunities in AI, software development, and blockchain.
+  </p>
+  <a href="mailto:Alfredmandona291@Gmail.com" class="contact-email">Alfredmandona291@Gmail.com</a>
+  <div class="contact-location">📍 North-Western, Zambia</div>
+  <div class="contact-phone" style="margin-top:0.4rem;">📞 +260 976 962 837</div>
+  <div style="margin-top: 2.5rem;">
+    <a href="mailto:Alfredmandona291@Gmail.com" class="btn-primary">Send a Message</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2025 Mandona Alfred Kalumbu</div>
+  <div>Built with HTML · CSS · JS</div>
+</footer>
+
+<script>
+  // Typing effect
+  const words = ['AI', 'Blockchain', 'Code', 'Purpose'];
+  let wi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typingWord');
+
+  function type() {
+    const word = words[wi];
+    if (!deleting) {
+      el.textContent = word.slice(0, ++ci);
+      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      el.textContent = word.slice(0, --ci);
+      if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+    }
+    setTimeout(type, deleting ? 60 : 100);
+  }
+  type();
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.skill-card, .project-card, .timeline-item, .cert-item, .stat-row').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
